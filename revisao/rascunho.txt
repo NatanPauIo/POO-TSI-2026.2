@@ -1,0 +1,20 @@
+livro
+ -titulo
+ -ano
+ -disponivel
+
+ eq: self.titulo == titulo e self.ano == ano
+
+Biblioteca
+ -acervo
+
+ cadastrar(livro)
+ emprestar(titulo)
+ devolver(titulo)
+ disponiveis()
+
+Erros:
+    LivroIndisponivelError
+    LivroNaoEncontradoError
+
+    
