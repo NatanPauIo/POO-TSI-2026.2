@@ -703,3 +703,616 @@ soma_faixa_q19 = SomatorioFaixaDezAVinte([8, 10, 15, 20, 19])
 soma_faixa_q19.exibir_resultado()
 print(f"Estado do objeto: {soma_faixa_q19}")
 print("\n" + "=" * 60 + "\n")
+
+
+# ==============================================================================
+# QUESTÃO 20: Leitura de 5 valores e somatório dos valores pares digitados
+# ==============================================================================
+class SomatorioParesCincoValores:
+    def __init__(self, valores: list) -> None:
+        self._valores = valores[:]
+
+    def calcular_somatorio_pares(self) -> int:
+        soma = 0
+        for valor in self._valores:
+            if valor % 2 == 0:
+                soma += valor
+        return soma
+
+    def exibir_resultado(self) -> None:
+        print(f"5 valores informados: {self._valores}")
+        print(f"Somatório dos valores pares: {self.calcular_somatorio_pares()}")
+
+    def __str__(self) -> str:
+        return f"SomatorioParesCincoValores(soma_pares={self.calcular_somatorio_pares()})"
+
+
+print(">>> QUESTÃO 20: Somatório dos Valores Pares (dentre 5 valores)")
+soma_pares_q20 = SomatorioParesCincoValores([6, 11, 4, 9, 12])
+soma_pares_q20.exibir_resultado()
+print(f"Estado do objeto: {soma_pares_q20}")
+print("\n" + "=" * 60 + "\n")
+
+
+# ==============================================================================
+# QUESTÃO 21: Quantidade definida pelo usuário e contagem de números pares
+# ==============================================================================
+class ContadorParesQuantidade:
+    def __init__(self, quantidade: int, valores: list) -> None:
+        self._quantidade = quantidade
+        self._valores = valores[:quantidade]
+
+    def contar_pares(self) -> int:
+        qtd_pares = 0
+        for i in range(self._quantidade):
+            if self._valores[i] % 2 == 0:
+                qtd_pares += 1
+        return qtd_pares
+
+    def exibir_resultado(self) -> None:
+        print(f"Quantidade de valores informada: {self._quantidade}")
+        print(f"Valores fornecidos: {self._valores}")
+        print(f"Quantidade de números pares digitados: {self.contar_pares()}")
+
+    def __str__(self) -> str:
+        return f"ContadorParesQuantidade(qtd={self._quantidade}, pares={self.contar_pares()})"
+
+
+print(">>> QUESTÃO 21: Contagem de Pares em N Valores Fornecidos")
+cont_pares_q21 = ContadorParesQuantidade(6, [10, 3, 8, 7, 14, 22])
+cont_pares_q21.exibir_resultado()
+print(f"Estado do objeto: {cont_pares_q21}")
+print("\n" + "=" * 60 + "\n")
+
+
+# ==============================================================================
+# QUESTÃO 22: Soma das posições ímpares (1º,3º,5º,7º,9º) vs pares (2º,4º,6º,8º,10º)
+# ==============================================================================
+class SomatorioSequenciaPosicoes:
+    def __init__(self, valores: list) -> None:
+        self._valores = valores[:]
+
+    def calcular_soma_posicoes_impares(self) -> float:
+        # 1º, 3º, 5º, 7º e 9º elementos correspondem aos índices 0, 2, 4, 6 e 8
+        soma = 0
+        for i in range(0, len(self._valores), 2):
+            soma += self._valores[i]
+        return soma
+
+    def calcular_soma_posicoes_pares(self) -> float:
+        # 2º, 4º, 6º, 8º e 10º elementos correspondem aos índices 1, 3, 5, 7 e 9
+        soma = 0
+        for i in range(1, len(self._valores), 2):
+            soma += self._valores[i]
+        return soma
+
+    def comparar_somatorios(self) -> str:
+        soma_imp = self.calcular_soma_posicoes_impares()
+        soma_par = self.calcular_soma_posicoes_pares()
+        if soma_imp > soma_par:
+            return "O somatório da sequência ímpar é MAIOR do que o da sequência par."
+        elif soma_imp < soma_par:
+            return "O somatório da sequência ímpar é MENOR do que o da sequência par."
+        else:
+            return "O somatório da sequência ímpar é IGUAL ao da sequência par."
+
+    def exibir_resultado(self) -> None:
+        print(f"10 valores digitados: {self._valores}")
+        print(
+            f"Soma da sequência ímpar (1º, 3º, 5º, 7º, 9º): "
+            f"{self.calcular_soma_posicoes_impares()}"
+        )
+        print(
+            f"Soma da sequência par   (2º, 4º, 6º, 8º, 10º): "
+            f"{self.calcular_soma_posicoes_pares()}"
+        )
+        print(self.comparar_somatorios())
+
+    def __str__(self) -> str:
+        return (
+            f"SomatorioSequenciaPosicoes(seq_impar={self.calcular_soma_posicoes_impares()}, "
+            f"seq_par={self.calcular_soma_posicoes_pares()})"
+        )
+
+
+print(">>> QUESTÃO 22: Soma das Posições Ímpares (1º,3º,5º,7º,9º) vs Pares (2º,4º,6º,8º,10º)")
+seq_pos_q22 = SomatorioSequenciaPosicoes([10, 5, 20, 8, 15, 12, 7, 6, 9, 4])
+seq_pos_q22.exibir_resultado()
+print(f"Estado do objeto: {seq_pos_q22}")
+print("\n" + "=" * 60 + "\n")
+
+
+# ==============================================================================
+# QUESTÃO 23: Somatório dos números pares e ímpares (entre 10 inteiros) e comparação
+# ==============================================================================
+class ComparadorSomaParesImpares:
+    def __init__(self, valores: list) -> None:
+        self._valores = valores[:]
+
+    def calcular_soma_pares(self) -> int:
+        soma_par = 0
+        for v in self._valores:
+            if v % 2 == 0:
+                soma_par += v
+        return soma_par
+
+    def calcular_soma_impares(self) -> int:
+        soma_impar = 0
+        for v in self._valores:
+            if v % 2 != 0:
+                soma_impar += v
+        return soma_impar
+
+    def comparar_somatorios(self) -> str:
+        soma_impar = self.calcular_soma_impares()
+        soma_par = self.calcular_soma_pares()
+        if soma_impar > soma_par:
+            return "O somatório dos números ímpares é MAIOR do que o dos números pares."
+        elif soma_impar < soma_par:
+            return "O somatório dos números ímpares é MENOR do que o dos números pares."
+        else:
+            return "O somatório dos números ímpares é IGUAL ao dos números pares."
+
+    def exibir_resultado(self) -> None:
+        print(f"10 valores inteiros digitados: {self._valores}")
+        print(f"Somatório dos números pares:   {self.calcular_soma_pares()}")
+        print(f"Somatório dos números ímpares: {self.calcular_soma_impares()}")
+        print(self.comparar_somatorios())
+
+    def __str__(self) -> str:
+        return (
+            f"ComparadorSomaParesImpares(soma_pares={self.calcular_soma_pares()}, "
+            f"soma_impares={self.calcular_soma_impares()})"
+        )
+
+
+print(">>> QUESTÃO 23: Comparação entre Somatório dos Pares e dos Ímpares")
+comp_soma_q23 = ComparadorSomaParesImpares([2, 7, 4, 9, 6, 11, 8, 13, 10, 15])
+comp_soma_q23.exibir_resultado()
+print(f"Estado do objeto: {comp_soma_q23}")
+print("\n" + "=" * 60 + "\n")
+
+
+# ==============================================================================
+# QUESTÃO 24: Somatório de sequência exibindo a expressão (ex: 2+7+3+8+6=26)
+# ==============================================================================
+class SomatorioExpressaoSequencia:
+    def __init__(self, total_numeros: int, numeros: list) -> None:
+        self._total_numeros = total_numeros
+        self._numeros = numeros[:total_numeros]
+
+    def calcular_soma(self) -> int:
+        soma = 0
+        for num in self._numeros:
+            soma += num
+        return soma
+
+    def gerar_expressao_saida(self) -> str:
+        expressao = ""
+        for i in range(len(self._numeros)):
+            expressao += str(self._numeros[i])
+            if i < len(self._numeros) - 1:
+                expressao += "+"
+        expressao += "=" + str(self.calcular_soma())
+        return expressao
+
+    def exibir_resultado(self) -> None:
+        print("Programa para cálculo do somatório de uma sequência de números.")
+        print(f"Digite o total de números a serem somados: {self._total_numeros}")
+        print("Números digitados pelo usuário:", end=" ")
+        for num in self._numeros:
+            print(num, end=" ")
+        print()
+        print(f"Saída no terminal: {self.gerar_expressao_saida()}")
+
+    def __str__(self) -> str:
+        return f"SomatorioExpressaoSequencia('{self.gerar_expressao_saida()}')"
+
+
+print(">>> QUESTÃO 24: Somatório Formatado de uma Sequência")
+seq_soma_q24 = SomatorioExpressaoSequencia(5, [2, 7, 3, 8, 6])
+seq_soma_q24.exibir_resultado()
+print(f"Estado do objeto: {seq_soma_q24}")
+print("\n" + "=" * 60 + "\n")
+
+
+# ==============================================================================
+# QUESTÃO 25: Números divisíveis por 7 e não múltiplos de 5 entre 1000 e 3000
+# ==============================================================================
+class FiltroDivisiveisPorSete:
+    def __init__(self, inicio: int = 1000, fim: int = 3000) -> None:
+        self._inicio = inicio
+        self._fim = fim
+
+    def obter_numeros_filtrados(self) -> list:
+        filtrados = []
+        for num in range(self._inicio, self._fim + 1):
+            if num % 7 == 0 and num % 5 != 0:
+                filtrados += [num]
+        return filtrados
+
+    def exibir_numeros(self) -> None:
+        numeros = self.obter_numeros_filtrados()
+        print(
+            f"Números divisíveis por 7 e não múltiplos de 5 "
+            f"no intervalo de {self._inicio} a {self._fim}:"
+        )
+        for i in range(len(numeros)):
+            if i < len(numeros) - 1:
+                print(numeros[i], end=";")
+            else:
+                print(numeros[i])
+
+    def __str__(self) -> str:
+        return (
+            f"FiltroDivisiveisPorSete(intervalo=[{self._inicio}, {self._fim}], "
+            f"total_encontrados={len(self.obter_numeros_filtrados())})"
+        )
+
+
+print(">>> QUESTÃO 25: Divisíveis por 7 e Não Múltiplos de 5 (1000 a 3000)")
+filtro_q25 = FiltroDivisiveisPorSete(1000, 3000)
+filtro_q25.exibir_numeros()
+print(f"Estado do objeto: {filtro_q25}")
+print("\n" + "=" * 60 + "\n")
+
+
+# ==============================================================================
+# QUESTÃO 26: Contabilização de pares e ímpares até digitar número negativo
+# ==============================================================================
+class ContabilizadorAteNegativo:
+    def __init__(self, sequencia_entrada: list) -> None:
+        self._sequencia_entrada = sequencia_entrada[:]
+        self._qtd_pares = 0
+        self._qtd_impares = 0
+        self._processar_com_while()
+
+    def _processar_com_while(self) -> None:
+        self._qtd_pares = 0
+        self._qtd_impares = 0
+        indice = 0
+        while indice < len(self._sequencia_entrada):
+            valor = self._sequencia_entrada[indice]
+            if valor < 0:
+                break
+            if valor % 2 == 0:
+                self._qtd_pares += 1
+            else:
+                self._qtd_impares += 1
+            indice += 1
+
+    @property
+    def qtd_pares(self) -> int:
+        return self._qtd_pares
+
+    @property
+    def qtd_impares(self) -> int:
+        return self._qtd_impares
+
+    def exibir_resultado(self) -> None:
+        print(f"Sequência de entradas (sentinela negativo): {self._sequencia_entrada}")
+        print(f"Quantidade de números pares:   {self._qtd_pares}")
+        print(f"Quantidade de números ímpares: {self._qtd_impares}")
+
+    def __str__(self) -> str:
+        return (
+            f"ContabilizadorAteNegativo(pares={self._qtd_pares}, "
+            f"impares={self._qtd_impares})"
+        )
+
+
+print(">>> QUESTÃO 26: Contagem de Pares e Ímpares até Número Negativo")
+cont_neg_q26 = ContabilizadorAteNegativo([4, 7, 12, 9, 15, 20, 0, -5, 100])
+cont_neg_q26.exibir_resultado()
+print(f"Estado do objeto: {cont_neg_q26}")
+print("\n" + "=" * 60 + "\n")
+
+
+# ==============================================================================
+# QUESTÃO 27: Sequência de 1 até N substituindo múltiplos de 3 (PI), 7 (PA) e ambos (POW)
+# ==============================================================================
+class SequenciaPiPaPow:
+    def __init__(self, limite: int) -> None:
+        self._limite = limite
+
+    def gerar_sequencia(self) -> list:
+        resultado = []
+        for num in range(1, self._limite + 1):
+            if num % 3 == 0 and num % 7 == 0:
+                resultado += ["POW"]
+            elif num % 3 == 0:
+                resultado += ["PI"]
+            elif num % 7 == 0:
+                resultado += ["PA"]
+            else:
+                resultado += [num]
+        return resultado
+
+    def exibir_sequencia(self) -> None:
+        sequencia = self.gerar_sequencia()
+        print(f"Sequência PI / PA / POW de 1 até {self._limite}:")
+        for item in sequencia:
+            print(item, end=" ")
+        print()
+
+    def __str__(self) -> str:
+        return f"SequenciaPiPaPow(limite={self._limite})"
+
+
+print(">>> QUESTÃO 27: Sequência de 1 até N com PI (múlt. 3), PA (múlt. 7) e POW (múlt. 3 e 7)")
+pipapow_q27 = SequenciaPiPaPow(25)
+pipapow_q27.exibir_sequencia()
+print(f"Estado do objeto: {pipapow_q27}")
+print("\n" + "=" * 60 + "\n")
+
+
+# ==============================================================================
+# QUESTÃO 28: Vetor de 10 posições inteiras e contagem de pares (zero é neutro)
+# ==============================================================================
+class VetorDezPosicoesPares:
+    def __init__(self, valores: list) -> None:
+        self._vetor = valores[:10]
+
+    @property
+    def vetor(self) -> list:
+        return self._vetor[:]
+
+    def contar_pares_sem_zero(self) -> int:
+        qtd_pares = 0
+        for num in self._vetor:
+            # Conforme enunciado: ZERO é neutro, NÃO É PAR
+            if num != 0 and num % 2 == 0:
+                qtd_pares += 1
+        return qtd_pares
+
+    def exibir_resultado(self) -> None:
+        print(f"Vetor de 10 posições: {self._vetor}")
+        print(
+            f"Quantidade de valores pares (considerando 0 neutro): "
+            f"{self.contar_pares_sem_zero()}"
+        )
+
+    def __str__(self) -> str:
+        return (
+            f"VetorDezPosicoesPares(vetor={self._vetor}, "
+            f"pares={self.contar_pares_sem_zero()})"
+        )
+
+
+print(">>> QUESTÃO 28: Contagem de Pares em Vetor de 10 Posições (Zero Neutro)")
+vetor_q28 = VetorDezPosicoesPares([0, 2, 5, 8, 11, 14, 0, 7, 20, 6])
+vetor_q28.exibir_resultado()
+print(f"Estado do objeto: {vetor_q28}")
+print("\n" + "=" * 60 + "\n")
+
+
+# ==============================================================================
+# QUESTÃO 29: Leitura da nota de 10 alunos, maior nota, menor nota e média
+# ==============================================================================
+class TurmaDezAlunos:
+    def __init__(self, notas: list) -> None:
+        self._notas = notas[:10]
+
+    def obter_maior_nota(self) -> float:
+        maior = self._notas[0]
+        for nota in self._notas:
+            if nota > maior:
+                maior = nota
+        return maior
+
+    def obter_menor_nota(self) -> float:
+        menor = self._notas[0]
+        for nota in self._notas:
+            if nota < menor:
+                menor = nota
+        return menor
+
+    def calcular_media(self) -> float:
+        soma = 0.0
+        for nota in self._notas:
+            soma += nota
+        return soma / len(self._notas)
+
+    def exibir_estatisticas(self) -> None:
+        print(f"Notas dos 10 alunos: {self._notas}")
+        print(f"Maior nota: {self.obter_maior_nota():.2f}")
+        print(f"Menor nota: {self.obter_menor_nota():.2f}")
+        print(f"Média das notas: {self.calcular_media():.2f}")
+
+    def __str__(self) -> str:
+        return (
+            f"TurmaDezAlunos(maior={self.obter_maior_nota():.2f}, "
+            f"menor={self.obter_menor_nota():.2f}, media={self.calcular_media():.2f})"
+        )
+
+
+print(">>> QUESTÃO 29: Maior, Menor e Média das Notas de 10 Alunos")
+turma_q29 = TurmaDezAlunos([7.5, 9.0, 5.5, 8.0, 6.0, 10.0, 4.5, 7.0, 8.5, 6.5])
+turma_q29.exibir_estatisticas()
+print(f"Estado do objeto: {turma_q29}")
+print("\n" + "=" * 60 + "\n")
+
+
+# ==============================================================================
+# QUESTÃO 30: Dois vetores de 5 inteiros (vet1 e vet2) com somaPAR e somaIMPAR
+# ==============================================================================
+class SomadorDoisVetores:
+    def __init__(self, valores_dez: list) -> None:
+        self.vet1 = valores_dez[:5]
+        self.vet2 = valores_dez[5:10]
+        self.somaPAR = 0
+        self.somaIMPAR = 0
+        self.calcular_somas()
+
+    def calcular_somas(self) -> None:
+        self.somaPAR = 0
+        self.somaIMPAR = 0
+        for valor in self.vet1 + self.vet2:
+            if valor % 2 == 0:
+                self.somaPAR += valor
+            else:
+                self.somaIMPAR += valor
+
+    def exibir_resultado(self) -> None:
+        print(f"Vetor 1 (vet1): {self.vet1}")
+        print(f"Vetor 2 (vet2): {self.vet2}")
+        print(f"Valor de somaPAR:   {self.somaPAR}")
+        print(f"Valor de somaIMPAR: {self.somaIMPAR}")
+
+    def __str__(self) -> str:
+        return (
+            f"SomadorDoisVetores(vet1={self.vet1}, vet2={self.vet2}, "
+            f"somaPAR={self.somaPAR}, somaIMPAR={self.somaIMPAR})"
+        )
+
+
+print(">>> QUESTÃO 30: Soma dos Pares (somaPAR) e Ímpares (somaIMPAR) de vet1 e vet2")
+vetores_q30 = SomadorDoisVetores([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+vetores_q30.exibir_resultado()
+print(f"Estado do objeto: {vetores_q30}")
+print("\n" + "=" * 60 + "\n")
+
+
+# ==============================================================================
+# QUESTÃO 31: Competição de salto em distância (5 saltos por atleta)
+# ==============================================================================
+class AtletaSalto:
+    def __init__(self, nome: str, saltos: list) -> None:
+        self._nome = nome
+        self._saltos = saltos[:5]
+
+    @property
+    def nome(self) -> str:
+        return self._nome
+
+    @property
+    def saltos(self) -> list:
+        return self._saltos[:]
+
+    def calcular_media(self) -> float:
+        soma = 0.0
+        for salto in self._saltos:
+            soma += salto
+        return soma / len(self._saltos)
+
+    def exibir_relatorio(self, numero_atleta: int) -> None:
+        ordens = ["Primeiro", "Segundo", "Terceiro", "Quarto", "Quinto"]
+        print(f"Atleta {numero_atleta}: {self._nome}\n")
+        for i in range(len(self._saltos)):
+            print(f"{ordens[i]} Salto: {self._saltos[i]} m")
+        print("\nResultado final:")
+        print(f"Atleta: {self._nome}")
+        texto_saltos = ""
+        for i in range(len(self._saltos)):
+            texto_saltos += str(self._saltos[i])
+            if i < len(self._saltos) - 1:
+                texto_saltos += " - "
+        print(f"Saltos: {texto_saltos}")
+        media = self.calcular_media()
+        # Formatação limpa conforme o exemplo do PDF (5.9 m e 6.18 m)
+        print(f"Média dos saltos: {round(media, 2)} m")
+
+    def __str__(self) -> str:
+        return f"AtletaSalto(nome='{self._nome}', media={round(self.calcular_media(), 2)})"
+
+
+class CompeticaoSaltoDistancia:
+    def __init__(self, registros_entrada: list) -> None:
+        self._registros_entrada = registros_entrada[:]
+        self._atletas = []
+        self._processar_registros()
+
+    def _processar_registros(self) -> None:
+        indice = 0
+        while indice < len(self._registros_entrada):
+            nome, saltos = self._registros_entrada[indice]
+            # Encerra quando não for informado o nome do atleta
+            if nome == "":
+                break
+            self._atletas += [AtletaSalto(nome, saltos)]
+            indice += 1
+
+    def exibir_resultados(self) -> None:
+        for i in range(len(self._atletas)):
+            self._atletas[i].exibir_relatorio(i + 1)
+            if i < len(self._atletas) - 1:
+                print("\n-------------------------------------------\n")
+
+    def __str__(self) -> str:
+        return f"CompeticaoSaltoDistancia(total_atletas={len(self._atletas)})"
+
+
+print(">>> QUESTÃO 31: Competição de Salto em Distância")
+dados_competicao_q31 = [
+    ("João do Pulo", [6.5, 6.1, 6.2, 5.4, 5.3]),
+    ("João do Salto", [6.5, 6.4, 6.6, 5.9, 5.5]),
+    ("", []),  # Sentinela de parada: nome vazio encerra a leitura
+]
+competicao_q31 = CompeticaoSaltoDistancia(dados_competicao_q31)
+competicao_q31.exibir_resultados()
+print(f"\nEstado do objeto: {competicao_q31}")
+print("\n" + "=" * 60 + "\n")
+
+
+# ==============================================================================
+# QUESTÃO 32: Comparativo de Consumo de Combustível entre Modelos de Carros
+# ==============================================================================
+class ComparativoConsumoCombustivel:
+    def __init__(
+        self,
+        modelos: list,
+        consumos: list,
+        distancia_km: float = 1000.0,
+        preco_gasolina: float = 7.50,
+    ) -> None:
+        self._modelos = modelos[:]
+        self._consumos = consumos[:]
+        self._distancia_km = distancia_km
+        self._preco_gasolina = preco_gasolina
+
+    def calcular_litros(self, consumo_km_l: float) -> float:
+        return self._distancia_km / consumo_km_l
+
+    def calcular_custo(self, consumo_km_l: float) -> float:
+        return self.calcular_litros(consumo_km_l) * self._preco_gasolina
+
+    def obter_modelo_mais_economico(self) -> str:
+        indice_maior_rendimento = 0
+        for i in range(1, len(self._consumos)):
+            if self._consumos[i] > self._consumos[indice_maior_rendimento]:
+                indice_maior_rendimento = i
+        return self._modelos[indice_maior_rendimento]
+
+    def exibir_relatorio(self) -> None:
+        print("Comparativo de Consumo de Combustível\n")
+        for i in range(len(self._modelos)):
+            print(f"Veículo {i + 1}")
+            print(f"Nome: {self._modelos[i]}")
+            print(f"Km por litro: {self._consumos[i]}")
+
+        print("\nRelatório Final")
+        for i in range(len(self._modelos)):
+            modelo = self._modelos[i]
+            km_l = self._consumos[i]
+            litros = self.calcular_litros(km_l)
+            custo = self.calcular_custo(km_l)
+            print(
+                f" {i + 1} - {modelo:<10} - {km_l:>5.1f} - "
+                f"{litros:>5.1f} litros - R$ {custo:>6.2f}"
+            )
+        print(f"O menor consumo é do {self.obter_modelo_mais_economico()}.")
+
+    def __str__(self) -> str:
+        return (
+            f"ComparativoConsumoCombustivel(veiculos={len(self._modelos)}, "
+            f"mais_economico='{self.obter_modelo_mais_economico()}')"
+        )
+
+
+print(">>> QUESTÃO 32: Comparativo de Consumo de Combustível")
+modelos_q32 = ["Fusca", "Gol", "Uno", "Vectra", "HB20"]
+consumos_q32 = [7, 10, 12.5, 9, 14.5]
+comparativo_q32 = ComparativoConsumoCombustivel(modelos_q32, consumos_q32)
+comparativo_q32.exibir_relatorio()
+print(f"\nEstado do objeto: {comparativo_q32}")
+print("\n" + "=" * 60 + "\n")

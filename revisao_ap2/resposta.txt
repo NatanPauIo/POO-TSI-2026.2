@@ -1,0 +1,43 @@
+1) Classifique os relacionamentos entre:
+
+- Pedido → Cliente: associação (relacionamento de uso / referência). O pedido conhece o cliente, mas o cliente não é parte obrigatória da estrutura do pedido.
+- Pedido → ItemPedido: composição. Um item de pedido normalmente pertence ao pedido e não existe sem ele.
+- Carrinho → Produto: agregação / associação. O carrinho contém produtos, mas os produtos existem independentemente do carrinho.
+- Pessoa → Interruptor: associação. A pessoa faz uso do interruptor, mas não é uma parte estrutural dele.
+
+2) O que acontece se a filha esquecer super().__init__()?
+
+Ela não executa o construtor da classe pai. Então todos os atributos criados no __init__ da superclasse não são inicializados.
+Se a classe filha não chamar super().__init__(), o atributo nunca é criado. Isso pode quebrar métodos que dependem dele.
+
+3) Sem executar: qual a saída de d.ola() no diamante D(C, B)? Como conferir?
+
+A saída será o metodo ola da classe C, pois o python organiza a resolução de metodos por MRO que busca a herança sempre da esquerda para direita.
+Para conferir podemos usar print(D.__mro__) que vai imprimir essa ordem:
+(<class '__main__.D'>, <class '__main__.C'>, <class '__main__.B'>, <class 'object'>)
+
+Ou seja, ele procura em D, depois em C, depois em B. Como C vem antes de B na herança, o método de C é chamado.
+
+4) Por que “if isinstance(animal, Gato): ... elif ...” é um anti-padrão? Qual a alternativa?
+
+É anti-padrão porque a lógica fica espalhada em condicionais e depende do tipo concreto. Isso quebra o polimorfismo: toda vez que aparece uma nova subclasse, você precisa mexer no if/elif.
+A ideia é depender do comportamento e não do tipo concreto.
+
+5) Qual a diferença entre um método com pass na superclasse e um @abstractmethod?
+
+Método com pass:
+- É um método normal.
+- Pode ser herdado sem erro.
+- A classe pode ser instanciada.
+- Se não for sobrescrito, o método apenas faz nada e retorna None.
+
+Método com @abstractmethod:
+- Define um contrato obrigatório.
+- A subclasse precisa implementar mover().
+- Se não implementar, a classe continua abstrata e não pode ser instanciada.
+
+Resumo:
+- pass: não força nada.
+- @abstractmethod: obriga a implementação.
+
+
