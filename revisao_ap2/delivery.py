@@ -64,9 +64,14 @@ class Pedido():
     def __init__(self,entregador:Entregador,cliente:Cliente, distancia:float) -> None:
         self.itens:list[Item] = []
         self.entregador = entregador
-        self.cliente = Cliente
+        self.cliente = cliente
         self.distancia = distancia
 
+    def adicionar_item(item:Item):
+        if not isinstance(item, Item):
+            raise Exception("Houve algum erro ao lançar seu pedido")
+
+        
     @property
     def total(self):
         soma = 0
@@ -82,12 +87,22 @@ class Restaurante():
         self.cardapio = Cardapio()
         self.pedidos:list[Pedido] = []
 
-    def lancar_pedido(self, pedido:Pedido) -> None:
-        if not isinstance(pedido, Pedido):
+    def lancar_pedido(self, entregador:Entregador, cliente:Cliente, distancia:float,itens:list[Item]) -> None:
+        try:
+            taxa = entregador.taxa_entrega(distancia)
+        except EntregaForaDeAreaError as e:
+            print(e)
+            return
+        
+        p1 = Pedido(entregador,cliente,distancia)
+        if not isinstance(p1, Pedido):
             raise PedidoError("Houve algum erro ao lançar seu pedido")
 
-        self.pedidos.append(pedido)
-        print("Seu pedido foi lançado com sucesso!")
+        for i in itens:
+            p1.itens.append(i)
+
+        self.pedidos.append(p1)
+        print(f"Seu pedido foi lançado com sucesso! O total do seu pedido foi {p1.total}, taxa de entrega {taxa}")
         return
 
     

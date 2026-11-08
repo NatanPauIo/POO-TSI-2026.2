@@ -1,14 +1,27 @@
 from delivery import *
+
+#restaurante
 r1 = Restaurante("Baboon",15)
 p1 = Prato("Risoto", 50)
 p2 = Prato("Macarrao", 40)
 r1.cardapio.adicionar_prato(p1)
 r1.cardapio.adicionar_prato(p2)
 
+#cliente
 c1 = Cliente("Alex","3333")
 c2 = Cliente("Alex","4444")
 
+#entregador
 e1 = DeBike("João","1111",30)
 e2 = DeMoto("Pedro","2222",50)
 
-Pedido()
+itens_pedido1 = [Item(2, r1.cardapio.pratos[0])]
+itens_pedido2 = [Item(2, r1.cardapio.pratos[0]), Item(1, r1.cardapio.pratos[1])]
+
+
+r1.lancar_pedido(e1,c1,25,itens_pedido1)
+r1.lancar_pedido(e2,c1,60,itens_pedido2)
+
+
+
+
