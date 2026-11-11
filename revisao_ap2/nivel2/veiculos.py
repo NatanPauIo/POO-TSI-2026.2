@@ -14,20 +14,26 @@ class Veiculo(ABC):
         return f"Veiculo de placa {self.placa} , valor da diaria R${self.diaria}"
 
 class Carro(Veiculo):
+    def __init__(self, placa, diaria):
+        super().__init__(placa, diaria)
+
     def calcular_aluguel(self,dias:int)-> float:
         return self.diaria * dias
 
 
 class Moto(Veiculo):
+    def __init__(self, placa, diaria):
+        super().__init__(placa, diaria)
+
     def calcular_aluguel(self,dias:int)-> float:
         return (self.diaria * dias) - (self.diaria * dias*0.2)
 
 class Caminhao(Veiculo) :
-    def __init__(self, placa:str) -> None:
-        super().__init__(diaria=100.00, placa=placa)
+    def __init__(self, placa:str,diaria) -> None:
+        super().__init__(diaria, placa=placa)
 
     def calcular_aluguel(self,dias:int)-> None:
-            return self.diaria * dias
+            return self.diaria * dias + 100
 
 
 class Locadora():
@@ -44,7 +50,7 @@ class Locadora():
     def cadastrar(self,veiculo:Veiculo) -> None:
         if not isinstance(veiculo, Veiculo):
             raise TypeError("Informe um veiculo válido")
-        
+
         self.veiculos.append(veiculo)
         return
 
@@ -68,6 +74,6 @@ print(l1.faturamento_previsto(5))
 #tentando instanciar classe abstrata
 try:
     meu_veiculo = Veiculo()
-except TypeError as erro:
+except TypeError as e:
     print("PROVA: Não é possível instanciar a classe abstrata.")
-    print(f"Mensagem do Python: {erro}")
+    print(f"Mensagem do Python: {e}")

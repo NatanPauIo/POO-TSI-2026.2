@@ -1,5 +1,5 @@
 #from delivery import *
-from modelo import *
+from revisao_ap2.nivel3.modelo import *
 
 #restaurante
 r1 = Restaurante("Baboon",15)

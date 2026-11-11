@@ -1,6 +1,6 @@
-from modelo.entidades import *
-from modelo.entregadores import *
-from modelo.erros import *
+from revisao_ap2.nivel3.modelo.entidades import *
+from revisao_ap2.nivel3.modelo.entregadores import *
+from revisao_ap2.nivel3.modelo.erros import *
 
 class Pedido():
     def __init__(self,entregador:Entregador,cliente:Cliente, distancia:float) -> None:

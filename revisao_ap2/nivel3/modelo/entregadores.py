@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod 
-from modelo.erros import EntregaForaDeAreaError
+from revisao_ap2.nivel3.modelo.erros import EntregaForaDeAreaError
 
 class Entregador(ABC):
     def __init__(self,nome:str,cpf:str,limite:float) -> None:
