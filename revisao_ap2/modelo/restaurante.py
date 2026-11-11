@@ -30,12 +30,9 @@ class Restaurante():
         self.pedidos:list[Pedido] = []
 
     def lancar_pedido(self, entregador:Entregador, cliente:Cliente, distancia:float,itens:list[Item]) -> None:
-        try:
-            taxa = entregador.taxa_entrega(distancia)
-        except EntregaForaDeAreaError as e:
-            print(e)
-            return
-        
+    
+        taxa = entregador.taxa_entrega(distancia)
+       
         p1 = Pedido(entregador,cliente,distancia)
         if not isinstance(p1, Pedido):
             raise PedidoError("Houve algum erro ao lançar seu pedido")

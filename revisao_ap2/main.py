@@ -19,9 +19,20 @@ e2 = DeMoto("Pedro","2222",50)
 itens_pedido1 = [Item(2, r1.cardapio.pratos[0])]
 itens_pedido2 = [Item(2, r1.cardapio.pratos[0]), Item(1, r1.cardapio.pratos[1])]
 
+try:
+   r1.lancar_pedido(e1,c1,25,itens_pedido1) 
+except EntregaForaDeAreaError as e:
+   print(e)
+except PedidoError as e:
+   print(e)
 
-r1.lancar_pedido(e1,c1,25,itens_pedido1)
-r1.lancar_pedido(e2,c1,60,itens_pedido2)
+try: 
+   r1.lancar_pedido(e2,c1,60,itens_pedido2)
+except EntregaForaDeAreaError as e:
+   print(e)
+except PedidoError as e:
+   print(e)
+
 
 
 
