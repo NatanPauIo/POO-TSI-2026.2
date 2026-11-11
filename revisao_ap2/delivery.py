@@ -16,7 +16,7 @@ class Cardapio():
 
     def adicionar_prato(self,prato:Prato) -> None:
         if not isinstance(prato, Prato):
-            raise TypeError("Informe um veiculo válido")
+            raise TypeError("Informe um prato válido")
 
         self.pratos.append(prato)
 
@@ -67,7 +67,7 @@ class Pedido():
         self.cliente = cliente
         self.distancia = distancia
 
-    def adicionar_item(item:Item):
+    def adicionar_item(self,item:Item):
         if not isinstance(item, Item):
             raise Exception("Houve algum erro ao lançar seu pedido")
 
