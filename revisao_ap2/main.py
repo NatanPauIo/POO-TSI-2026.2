@@ -1,4 +1,5 @@
-from delivery import *
+#from delivery import *
+from modelo import *
 
 #restaurante
 r1 = Restaurante("Baboon",15)
