@@ -13,6 +13,9 @@ class Entregador(ABC):
 
 
 class DeBike(Entregador):
+    def __init__(self, nome, cpf, limite):
+        super().__init__(nome, cpf, limite)
+
     def taxa_entrega(self,distancia:float) -> float:
         if(distancia > self.limite):
             raise EntregaForaDeAreaError("O entragador não atende até essa região")
@@ -20,6 +23,9 @@ class DeBike(Entregador):
         return distancia * 0.8
 
 class DeMoto(Entregador):
+    def __init__(self, nome, cpf, limite):
+        super().__init__(nome, cpf, limite)
+
     def taxa_entrega(self,distancia:float) -> float:
         if(distancia > self.limite):
             raise EntregaForaDeAreaError("O entragador não atende até essa região")
